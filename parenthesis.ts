@@ -9,12 +9,23 @@ export default class Analayzer {
   constructor(exp: string) {
     this.exp = exp;
     this.extractInput();
+  }
+
+  createTruthTable() {
     for (let inputIndex = 0; inputIndex < this.inputSets.length; inputIndex++) {
       this.inspectBrackets(this.exp, inputIndex);
     }
   }
 
-  private inspectBrackets(exp: string, inputIndex: number) {
+  findStepsFor(exp: string, inputIndex: number) {
+    this.inspectBrackets(exp, inputIndex, true);
+  }
+
+  private inspectBrackets(
+    exp: string,
+    inputIndex: number,
+    withSteps: boolean = false
+  ) {
     const stack: number[] = [];
     const copy = exp;
     for (let ind = 0; ind < exp.length; ind++) {
@@ -24,15 +35,23 @@ export default class Analayzer {
       } else if (char == ")") {
         const start = stack.pop() as number;
         const content = exp.slice(start + 1, ind);
-        const result = this.inspectBrackets(content, inputIndex);
+        const result = this.inspectBrackets(content, inputIndex, withSteps);
         exp = this.resolveBracket(start, ind, result, exp);
         ind -= ind - start;
       }
     }
+
+    if (withSteps) {
+      console.log(
+        `Processing steps for: ${copy} under input of: ${this.inputSets[inputIndex]}`
+      );
+    }
+
     const ans = new Expression(
       exp,
       this.variableHash,
-      this.inputSets[inputIndex]
+      this.inputSets[inputIndex],
+      withSteps
     ).exp;
     const column = this.solutionMap[copy];
     column ? column.push(ans) : (this.solutionMap[copy] = [ans]);
@@ -71,5 +90,7 @@ export default class Analayzer {
   }
 }
 
-const expression = new Analayzer("(p|q)&(~q|r&p)|~r");
-console.log(expression.solutionMap);
+const expression = new Analayzer("(p|q&~r)&(r|p)");
+// expression.createTruthTable();
+expression.findStepsFor("(p|q&~r)&(r|p)", 0);
+// console.log(expression?.solutionMap);

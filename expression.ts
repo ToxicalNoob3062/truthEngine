@@ -7,19 +7,19 @@ export default class Expression {
   variableHash: object;
   input: string;
   operatorsQueue: PriorityQueue<string>;
+  mode: boolean;
 
   //constructor function to solve a expression without bracket for single input set
-  constructor(exp: string, hashes: object, input: string) {
+  constructor(exp: string, hashes: object, input: string, hasSteps: boolean) {
     this.exp = exp;
     this.variableHash = hashes;
     this.input = input;
+    this.mode = hasSteps;
     this.arrangeOperators();
     this.solve();
   }
 
   private solve() {
-    // console.log("Expression to solve: " + this.exp); //stating problem expression
-    // console.log(`For case${i}:${this.inputSets[i]}`); //label for cases
     while (this.operatorsQueue.size() > 0) {
       const operator = this.operatorsQueue.dequeue();
       this.monsterOperator(operator as string);
@@ -43,7 +43,7 @@ export default class Expression {
           result as string
         );
         operator == "~" ? (ind -= 1) : (ind -= 2);
-        // console.log(this.exp); //for printing every step of a particular case!!
+        if (this.mode) console.log(this.exp); //for printing every step of a particular case!!
       }
     }
   }
