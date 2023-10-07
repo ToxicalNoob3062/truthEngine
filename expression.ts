@@ -97,9 +97,9 @@ export default class Expression {
         return this.booleanToString(
           (leftValue || rightValue) && !(leftValue && rightValue)
         );
-      case "→":
+      case ">":
         return this.booleanToString(!leftValue || rightValue);
-      case "↔":
+      case "=":
         return this.booleanToString(
           (leftValue && rightValue) || (!leftValue && !rightValue)
         );
