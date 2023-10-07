@@ -7,7 +7,7 @@ export default class Analayzer {
   exp: string;
 
   constructor(exp: string) {
-    this.exp = exp;
+    this.exp = "(" + exp + ")";
     this.extractInput();
   }
 
@@ -18,7 +18,7 @@ export default class Analayzer {
   }
 
   findStepsFor(exp: string, inputIndex: number) {
-    this.inspectBrackets(exp, inputIndex, true);
+    this.inspectBrackets("(" + exp + ")", inputIndex, true);
   }
 
   private inspectBrackets(
@@ -27,24 +27,30 @@ export default class Analayzer {
     withSteps: boolean = false
   ) {
     const stack: number[] = [];
+    const stack2: number[] = [];
     const copy = exp;
+    let ind2 = 0;
     for (let ind = 0; ind < exp.length; ind++) {
       const char = exp[ind];
       if (char === "(") {
         stack.push(ind);
+        stack2.push(ind2);
       } else if (char == ")") {
         const start = stack.pop() as number;
         const content = exp.slice(start + 1, ind);
+        const key = copy.slice((stack2.pop() as number) + 1, ind2);
+        if (withSteps) {
+          console.log(
+            `Processing steps for: ${key} under input of: ${this.inputSets[inputIndex]}`
+          );
+        }
         const result = this.inspectBrackets(content, inputIndex, withSteps);
+        const column = this.solutionMap[key];
+        column ? column.push(result) : (this.solutionMap[key] = [result]);
         exp = this.resolveBracket(start, ind, result, exp);
         ind -= ind - start;
       }
-    }
-
-    if (withSteps) {
-      console.log(
-        `Processing steps for: ${copy} under input of: ${this.inputSets[inputIndex]}`
-      );
+      ind2++;
     }
 
     const ans = new Expression(
@@ -53,8 +59,6 @@ export default class Analayzer {
       this.inputSets[inputIndex],
       withSteps
     ).exp;
-    const column = this.solutionMap[copy];
-    column ? column.push(ans) : (this.solutionMap[copy] = [ans]);
     return ans;
   }
 
@@ -90,7 +94,8 @@ export default class Analayzer {
   }
 }
 
-const expression = new Analayzer("(p|q&~r)&(r|p)");
+const input = "((a&b)|(~c&a))&b";
+const expression = new Analayzer(input);
+expression.findStepsFor(input, 0);
 // expression.createTruthTable();
-expression.findStepsFor("(p|q&~r)&(r|p)", 0);
 // console.log(expression?.solutionMap);
