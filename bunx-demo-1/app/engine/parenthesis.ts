@@ -1,6 +1,6 @@
 import Expression from "./expression";
 
-export default class Analayzer {
+export default class Analyzer {
   solutionMap: object = {};
   variableHash: object = {};
   inputSets: string[] = [];
@@ -94,8 +94,12 @@ export default class Analayzer {
   }
 }
 
-const input = "((a&b)|(~c&a))&b";
-const expression = new Analayzer(input);
-expression.findStepsFor(input, 0);
+//___________testing__________
+// const input = "((a&b)|(~c^d))>(e=f|g)";
+// const expression = new Analyzer(input);
 // expression.createTruthTable();
-// console.log(expression?.solutionMap);
+// let a = [0, 0];
+// for (let char of expression.solutionMap[input]) {
+//   char == "T" ? a[0]++ : a[1]++;
+// }
+// console.log(a);
