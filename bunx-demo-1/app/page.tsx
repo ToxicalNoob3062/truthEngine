@@ -3,9 +3,6 @@ import Analyzer from "./engine/parenthesis";
 
 const input = "((a&b)|(~c^d))>(e=f|g)";
 const expression = new Analyzer(input);
-// let key = "";
-// for (let k in expression.variableHash) key += k;
-// expression.solutionMap[key] = expression.inputSets;
 
 export default function Home() {
   for (let key in expression.variableHash) {

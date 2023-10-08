@@ -96,11 +96,11 @@ export default class Analyzer {
 }
 
 //___________testing__________
-const input = "((a&b)|(~c^d))>(e=f|g)";
-const expression = new Analyzer(input);
+// const input = "((a&b)|(~c^d))>(e=f|g)";
+// const expression = new Analyzer(input);
 // expression.createTruthTable();
-expression.findStepsFor(input, 0);
-console.log(expression.solutionMap);
+// expression.findStepsFor(input, 0);
+// console.log(expression.solutionMap);
 // let a = [0, 0];
 // for (let char of expression.solutionMap[input]) {
 //   char == "T" ? a[0]++ : a[1]++;
