@@ -39,14 +39,15 @@ export default class Analyzer {
         const start = stack.pop() as number;
         const content = exp.slice(start + 1, ind);
         const key = copy.slice((stack2.pop() as number) + 1, ind2);
+        const result = this.inspectBrackets(content, inputIndex, withSteps);
         if (withSteps) {
           console.log(
             `Processing steps for: ${key} under input of: ${this.inputSets[inputIndex]}`
           );
+        } else {
+          const column = this.solutionMap[key];
+          column ? column.push(result) : (this.solutionMap[key] = [result]);
         }
-        const result = this.inspectBrackets(content, inputIndex, withSteps);
-        const column = this.solutionMap[key];
-        column ? column.push(result) : (this.solutionMap[key] = [result]);
         exp = this.resolveBracket(start, ind, result, exp);
         ind -= ind - start;
       }
@@ -95,9 +96,11 @@ export default class Analyzer {
 }
 
 //___________testing__________
-// const input = "((a&b)|(~c^d))>(e=f|g)";
-// const expression = new Analyzer(input);
+const input = "((a&b)|(~c^d))>(e=f|g)";
+const expression = new Analyzer(input);
 // expression.createTruthTable();
+expression.findStepsFor(input, 0);
+console.log(expression.solutionMap);
 // let a = [0, 0];
 // for (let char of expression.solutionMap[input]) {
 //   char == "T" ? a[0]++ : a[1]++;
