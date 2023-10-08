@@ -7,6 +7,7 @@ export default class Analyzer {
   exp: string;
 
   constructor(exp: string) {
+    if (exp == "") return;
     this.exp = "(" + exp + ")";
     this.extractInput();
   }

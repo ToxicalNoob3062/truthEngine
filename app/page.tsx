@@ -2,6 +2,8 @@
 import TableComponent from "./components/table";
 import Analyzer from "./engine/parenthesis";
 import { useState, useRef } from "react";
+import PopupComponent from "./components/popup";
+import CardComponent from "./components/card";
 
 //utility function
 function isNotEmptyObject(obj) {
@@ -32,6 +34,9 @@ export default function Home() {
   }
   return (
     <div>
+      <h1 className="text-5xl text-center p-3 text-blue-800">
+        The Truth Engine🔥
+      </h1>
       <div className="w-full flex p-4">
         <input
           type="text"
@@ -46,8 +51,11 @@ export default function Home() {
           Generate
         </button>
       </div>
-      {isNotEmptyObject(truthTable) && (
+      <PopupComponent />
+      {isNotEmptyObject(truthTable) ? (
         <TableComponent data={truthTable as {}} />
+      ) : (
+        <CardComponent />
       )}
     </div>
   );
