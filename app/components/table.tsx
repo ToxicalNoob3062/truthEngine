@@ -14,7 +14,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ data }) => {
       <table className="min-w-full border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
-            <th className="border border-gray-300 p-2">#</th>{" "}
+            <th className="border border-gray-300 p-2">#</th>
             {keys.map((key) => (
               <th key={key} className="border border-gray-300 p-2">
                 {key}
@@ -28,7 +28,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ data }) => {
               key={rowIndex}
               className={rowIndex % 2 === 0 ? "bg-gray-50" : "bg-white"}
             >
-              <td className="border border-gray-300 p-2">{rowIndex + 1}</td>{" "}
+              <td className="border border-gray-300 p-2">{rowIndex + 1}</td>
               {values.map((value, colIndex) => (
                 <td key={colIndex} className="border border-gray-300 p-2">
                   {value[rowIndex]}

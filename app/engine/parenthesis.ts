@@ -8,8 +8,13 @@ export default class Analyzer {
 
   constructor(exp: string) {
     if (exp == "") return;
-    this.exp = "(" + exp + ")";
+    if (!this.expressionHasParenthesis(exp)) this.exp = "(" + exp + ")";
+    else this.exp = exp;
     this.extractInput();
+  }
+
+  expressionHasParenthesis(exp: string) {
+    return exp[0] === "(" && exp[exp.length - 1] == ")";
   }
 
   createTruthTable() {
