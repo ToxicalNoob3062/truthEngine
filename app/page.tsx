@@ -1,11 +1,14 @@
 "use client";
+
+import { useState, useRef } from "react";
 import TableComponent from "./components/table";
 import Analyzer from "./engine/parenthesis";
-import { useState, useRef } from "react";
 import PopupComponent from "./components/popup";
 import CardComponent from "./components/card";
+import Checker from "./engine/checker";
+import Alert from "./components/alert";
 
-//utility function
+// utility function
 function isNotEmptyObject(obj) {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -18,22 +21,31 @@ function isNotEmptyObject(obj) {
 export default function Home() {
   const input = useRef(null);
   const [truthTable, setTable] = useState({});
+  const [scanResults, setScanResults] = useState(new Checker(""));
 
   function onGenerate() {
-    const expression = new Analyzer(input.current.value);
-    for (let key in expression.variableHash) {
-      for (let elem of expression.inputSets) {
-        const val = elem[expression.variableHash[key]];
-        expression.solutionMap[key]
-          ? expression.solutionMap[key].push(val)
-          : (expression.solutionMap[key] = [val]);
+    const inputValue = input.current.value;
+    const newScanResults = new Checker(inputValue);
+    if (newScanResults.isCorrect) {
+      const expression = new Analyzer(newScanResults.exp);
+      for (let key in expression.variableHash) {
+        for (let elem of expression.inputSets) {
+          const val = elem[expression.variableHash[key]];
+          expression.solutionMap[key]
+            ? expression.solutionMap[key].push(val)
+            : (expression.solutionMap[key] = [val]);
+        }
       }
+      expression.createTruthTable();
+      setTable(expression.solutionMap);
+    } else {
+      setTable({});
     }
-    expression.createTruthTable();
-    setTable(expression.solutionMap);
+    setScanResults(newScanResults);
   }
+
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-5xl text-center p-3 text-blue-800">
         The Truth Engine🔥
       </h1>
@@ -47,11 +59,13 @@ export default function Home() {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-md"
           onClick={onGenerate}
+          type="button"
         >
           Generate
         </button>
       </div>
       <PopupComponent />
+      <Alert msg={scanResults.incorrectFor} state={scanResults.isCorrect} />
       {isNotEmptyObject(truthTable) ? (
         <TableComponent data={truthTable as {}} />
       ) : (
