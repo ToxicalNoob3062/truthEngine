@@ -4,7 +4,7 @@ import React from "react";
 
 const CardComponent: React.FC = () => {
   return (
-    <div className="bg-blue-200 p-4 w-96 m-auto rounded-lg shadow-md my-4">
+    <div className="bg-blue-200 p-4  md:w-[60%] sm:w-[90%]   mx-auto rounded-lg shadow-md my-4">
       <h2 className="text-2xl font-semibold mb-2">
         Welcome to Propositional Logic Tool
       </h2>

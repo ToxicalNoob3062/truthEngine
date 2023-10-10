@@ -8,7 +8,7 @@ const Alert: React.FC<AlertProps> = ({ state, msg }) => {
     <div
       className={`${
         state ? "bg-green-500" : "bg-red-500"
-      } text-white text-center p-4 w-[80%] mx-auto rounded-xl`}
+      } text-white text-center p-4  w-auto mx-auto border-y-4 border-black`}
     >
       {msg}
     </div>
