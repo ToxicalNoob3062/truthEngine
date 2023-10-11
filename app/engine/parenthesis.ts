@@ -8,13 +8,34 @@ export default class Analyzer {
 
   constructor(exp: string) {
     if (exp == "") return;
-    if (!this.expressionHasParenthesis(exp)) this.exp = "(" + exp + ")";
+    if (this.expressionHasParenthesis(exp)) this.exp = "(" + exp + ")";
     else this.exp = exp;
     this.extractInput();
   }
 
   expressionHasParenthesis(exp: string) {
-    return exp[0] === "(" && exp[exp.length - 1] == ")";
+    let bracketCount = 0;
+    let operatorCount = 0;
+    let operatorState = false;
+    let max = 0;
+    for (let char of exp) {
+      if (char == "(") {
+        bracketCount++;
+        if (bracketCount == 1) {
+          max++;
+          operatorState = false;
+          if (operatorCount > 0) operatorCount--;
+        }
+      } else if (char == ")") {
+        bracketCount--;
+        if (bracketCount == 0) operatorState = true;
+      } else if (operatorState) {
+        operatorCount++;
+        if (operatorCount > 1) return false;
+      }
+    }
+    if (max > 1) return true;
+    return false;
   }
 
   createTruthTable() {
