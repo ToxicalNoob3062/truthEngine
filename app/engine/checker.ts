@@ -69,6 +69,7 @@ export default class Checker {
         const leftChar = this.exp[charInd - 1] ? this.exp[charInd - 1] : "";
         const valid =
           (rightChar == "(" ||
+            rightChar == "~" ||
             this.isDefault(rightChar) ||
             this.isVariable(rightChar)) &&
           (leftChar == ")" ||
