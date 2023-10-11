@@ -4,14 +4,16 @@ import React from "react";
 
 const CardComponent: React.FC = () => {
   return (
-    <div className="bg-blue-200 p-4  md:w-[60%] sm:w-[90%]   mx-auto rounded-lg shadow-md my-4">
-      <h2 className="text-2xl font-semibold mb-2">
-        Welcome to Propositional Logic Tool
+    <div className="bg-blue-200 p-4 md:w-[60%] sm:w-[90%] mx-auto rounded-lg shadow-md my-4">
+      <h2 className="text-2xl text-black text-center font-semibold mb-2 underline">
+        About Tool
       </h2>
-      <p className="text-gray-700">
-        This tool is created by Rahat to help you understand propositional logic
-        easily. You can enter boolean expressions in the input field and click
-        the "Generate" button to see the truth table.
+      <p className="text-gray-700 text-justify">
+        This tool is created by{" "}
+        <span className="font-bold text-red-600">Rahat</span> to help you
+        understand propositional logic easily. You can enter boolean expressions
+        in the input field and click the "Generate" button to see the truth
+        table.
         <br />
         <br />
         Use the following symbols:
@@ -33,16 +35,24 @@ const CardComponent: React.FC = () => {
           <b>&gt;</b> is implication
         </li>
         <li>
-          <b>=</b> is bi-conditional or equivalence!
+          <b>=</b> is bi-conditional or equivalence
         </li>
         <li>
           <b>()</b> for changing order of precedence
         </li>
       </ul>
-      <p className="text-gray-700">
-        Rules for input: Type the boolean expression in lowercase with no spaces
-        between the expression.
-      </p>
+      <ol className="list-decimal pl-6 mt-2">
+        <li>
+          Expression in <span className="font-bold">lowercase!</span>
+        </li>
+        <li>
+          Use <span className="font-bold">T</span> and{" "}
+          <span className="font-bold">F</span> as true and false!
+        </li>
+        <li>
+          For extra column, wrap with <span className="font-bold">()</span>!
+        </li>
+      </ol>
     </div>
   );
 };

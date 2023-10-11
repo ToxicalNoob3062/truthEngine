@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <div className="w-full">
-      <h1 className="text-5xl text-center p-3 text-blue-800">
+      <h1 className="text-5xl text-center p-3 text-blue-800 font-serif font-semibold">
         The Truth Engine🔥
       </h1>
       <div className="w-full flex p-4">
@@ -54,7 +54,7 @@ export default function Home() {
           type="text"
           ref={input}
           placeholder="Enter expression"
-          className="w-full p-2 rounded-l-md border border-gray-300 focus:outline-none focus:border-blue-500"
+          className="w-full p-2 rounded-l-md border border-gray-300 focus:outline-none focus:border-blue-500 font-bold"
         />
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-md"

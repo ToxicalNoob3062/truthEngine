@@ -12,7 +12,7 @@ const PopupComponent: React.FC = () => {
       {/* Question button */}
       <button
         type="button"
-        className="fixed bottom-4 right-4 p-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none"
+        className="fixed bottom-4 right-2 p-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none"
         onClick={togglePopup}
       >
         ?
@@ -49,13 +49,11 @@ const PopupComponent: React.FC = () => {
                 <path d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
-            <h2 className="text-2xl font-semibold mb-4">
-              Product Usage Instructions
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">Usage Instructions:</h2>
             <p className="text-gray-700">
               Here are the product usage instructions:
             </p>
-            {/* Move the <ul> outside of the <p> */}
+            {/* Upper 7 points with bullets */}
             <ul className="list-disc pl-6 mt-2">
               <li>
                 <b>~</b> is not
@@ -73,16 +71,26 @@ const PopupComponent: React.FC = () => {
                 <b>{">"}</b> is implication
               </li>
               <li>
-                <b>=</b> is bi-conditional or equivalence!
+                <b>=</b> is bi-conditional or equivalence
               </li>
               <li>
                 <b>()</b> parenthesis for changing order of precedence
               </li>
             </ul>
-            <p className="text-gray-700">
-              Rules for input: Type the boolean expression in lowercase with no
-              spaces between the expression.
-            </p>
+            {/* Lower 3 points as plain numbers */}
+            <ol className="list-decimal pl-6 mt-2">
+              <li>
+                Expression in <span className="font-bold">lowercase!</span>
+              </li>
+              <li>
+                Use <span className="font-bold">T</span> and{" "}
+                <span className="font-bold">F</span> as true and false!
+              </li>
+              <li>
+                For extra column, wrap with{" "}
+                <span className="font-bold">()</span>!
+              </li>
+            </ol>
           </div>
         </div>
       )}
