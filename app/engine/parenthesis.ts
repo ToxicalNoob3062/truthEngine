@@ -1,3 +1,4 @@
+import { fstat } from "fs";
 import Expression from "./expression";
 
 export default class Analyzer {
@@ -14,28 +15,32 @@ export default class Analyzer {
   }
 
   expressionHasParenthesis(exp: string) {
-    let bracketCount = 0;
-    let operatorCount = 0;
-    let operatorState = false;
-    let max = 0;
-    for (let char of exp) {
-      if (char == "(") {
-        bracketCount++;
-        if (bracketCount == 1) {
-          max++;
-          if (operatorCount > 1) return false;
-          else operatorCount = 0;
-          operatorState = false;
+    let fCount = 0;
+    let bCount = 0;
+    let fState = false;
+    let bState = false;
+    for (let ind = 0; ind < exp.length; ind++) {
+      const char = exp[ind];
+      const backChar = exp[exp.length - ind + 1];
+      if (!fState) {
+        if (char == "(") {
+          fCount++;
+        } else if (char == ")") {
+          fCount--;
+          if (fCount == 0) fState = true;
         }
-      } else if (char == ")") {
-        bracketCount--;
-        if (bracketCount == 0) operatorState = true;
-      } else if (operatorState) {
-        operatorCount++;
+      }
+      if (!bState) {
+        if (backChar == ")") {
+          bCount++;
+        } else if (backChar == "(") {
+          bCount--;
+          if (bCount == 0) bState = true;
+        }
       }
     }
     const safeEnds = exp[0] == "(" && exp[exp.length - 1] == ")";
-    if (max > 1) return true;
+    if (bState && fState) return true;
     if (!safeEnds) return true;
     return false;
   }
