@@ -23,18 +23,20 @@ export default class Analyzer {
         bracketCount++;
         if (bracketCount == 1) {
           max++;
+          if (operatorCount > 1) return false;
+          else operatorCount = 0;
           operatorState = false;
-          if (operatorCount > 0) operatorCount--;
         }
       } else if (char == ")") {
         bracketCount--;
         if (bracketCount == 0) operatorState = true;
       } else if (operatorState) {
         operatorCount++;
-        if (operatorCount > 1) return false;
       }
     }
+    const safeEnds = exp[0] == "(" && exp[exp.length - 1] == ")";
     if (max > 1) return true;
+    if (!safeEnds) return true;
     return false;
   }
 
