@@ -30,11 +30,11 @@ export default class Checker {
     }
     if (openBrackets !== 0) {
       this.incorrectFor =
-        "Mismatched or misplaced brackets inside expression!🫥";
+        "Mismatched or misplaced brackets inside expression!😭";
       return false;
     }
     this.incorrectFor = exp
-      ? "That was a digestable input!❤️ Yum Yum!😋"
+      ? "That was a digestable input!Yum Yum!😋"
       : "I am hungry!🤤 Please feed me boolean Expressions!";
     return true;
   }
