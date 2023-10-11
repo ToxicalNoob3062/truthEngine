@@ -6,6 +6,7 @@ export default class Expression {
   exp: string;
   variableHash: object;
   input: string;
+  stepsStorage: string = "";
   operatorsQueue: PriorityQueue<string>;
   mode: boolean;
 
@@ -43,7 +44,7 @@ export default class Expression {
           result as string
         );
         operator == "~" ? (ind -= 1) : (ind -= 2);
-        if (this.mode) console.log(this.exp); //for printing every step of a particular case!!
+        if (this.mode) this.stepsStorage += this.exp + `\n`; //for printing every step of a particular case!!
       }
     }
   }

@@ -1,10 +1,10 @@
-import { fstat } from "fs";
 import Expression from "./expression";
 
 export default class Analyzer {
   solutionMap: object = {};
   variableHash: object = {};
   inputSets: string[] = [];
+  stepsStorage: string = "";
   exp: string;
 
   constructor(exp: string) {
@@ -39,6 +39,7 @@ export default class Analyzer {
   }
 
   findStepsFor(exp: string, inputIndex: number) {
+    this.stepsStorage = "";
     this.inspectBrackets("(" + exp + ")", inputIndex, true);
   }
 
@@ -62,14 +63,17 @@ export default class Analyzer {
         const key = copy.slice((stack2.pop() as number) + 1, ind2);
         const result = this.inspectBrackets(content, inputIndex, withSteps);
         if (withSteps) {
-          console.log(
-            `Processing steps for: ${key} under input of: ${this.inputSets[inputIndex]}`
-          );
+          this.stepsStorage +=
+            `Processing steps for: ${key} under input of: ${this.inputSets[inputIndex]}` +
+            `\n` +
+            result.stepsStorage;
         } else {
           const column = this.solutionMap[key];
-          column ? column.push(result) : (this.solutionMap[key] = [result]);
+          column
+            ? column.push(result.exp)
+            : (this.solutionMap[key] = [result.exp]);
         }
-        exp = this.resolveBracket(start, ind, result, exp);
+        exp = this.resolveBracket(start, ind, result.exp, exp);
         ind -= ind - start;
       }
       ind2++;
@@ -80,7 +84,7 @@ export default class Analyzer {
       this.variableHash,
       this.inputSets[inputIndex],
       withSteps
-    ).exp;
+    );
     return ans;
   }
 
@@ -121,7 +125,10 @@ export default class Analyzer {
 // const expression = new Analyzer(input);
 // expression.createTruthTable();
 // expression.findStepsFor(input, 0);
-// console.log(expression.solutionMap);
+// console.log(expression.stepsStorage);
+// expression.findStepsFor(input, 1);
+// console.log("__________");
+// console.log(expression.stepsStorage);
 // let a = [0, 0];
 // for (let char of expression.solutionMap[input]) {
 //   char == "T" ? a[0]++ : a[1]++;
