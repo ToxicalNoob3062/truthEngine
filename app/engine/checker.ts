@@ -34,7 +34,7 @@ export default class Checker {
       return false;
     }
     this.incorrectFor = exp
-      ? "That was a digestable input!Yum Yum!😋"
+      ? "That was a digestable input! Yum!😋"
       : "I am hungry!🤤 Please feed me boolean Expressions!";
     return true;
   }
