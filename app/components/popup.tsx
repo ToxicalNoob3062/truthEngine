@@ -1,6 +1,4 @@
-// PopupComponent.tsx
-
-import React, { useState } from "react";
+import { useState } from "react";
 
 const PopupComponent: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +29,7 @@ const PopupComponent: React.FC = () => {
 
           {/* Popup Content */}
           <div
-            className={`p-4 bg-white rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ${
+            className={`p-4 bg-white w-[96%] md:w-[80%] lg:w-[60%] rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ${
               isOpen ? "block" : "hidden"
             }`}
           >
@@ -56,30 +54,32 @@ const PopupComponent: React.FC = () => {
             </h2>
             <p className="text-gray-700">
               Here are the product usage instructions:
-              <ul className="list-disc pl-6 mt-2">
-                <li>
-                  <b>~</b> is not
-                </li>
-                <li>
-                  <b>&</b> is and
-                </li>
-                <li>
-                  <b>|</b> is or
-                </li>
-                <li>
-                  <b>^</b> is xor
-                </li>
-                <li>
-                  <b>{">"}</b> is implication
-                </li>
-                <li>
-                  <b>=</b> is bi-conditional or equivalence!
-                </li>
-                <li>
-                  <b>()</b> parenthesis for changing order of precedence
-                </li>
-              </ul>
-              <br />
+            </p>
+            {/* Move the <ul> outside of the <p> */}
+            <ul className="list-disc pl-6 mt-2">
+              <li>
+                <b>~</b> is not
+              </li>
+              <li>
+                <b>&</b> is and
+              </li>
+              <li>
+                <b>|</b> is or
+              </li>
+              <li>
+                <b>^</b> is xor
+              </li>
+              <li>
+                <b>{">"}</b> is implication
+              </li>
+              <li>
+                <b>=</b> is bi-conditional or equivalence!
+              </li>
+              <li>
+                <b>()</b> parenthesis for changing order of precedence
+              </li>
+            </ul>
+            <p className="text-gray-700">
               Rules for input: Type the boolean expression in lowercase with no
               spaces between the expression.
             </p>
