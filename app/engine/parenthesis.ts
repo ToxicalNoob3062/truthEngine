@@ -9,40 +9,27 @@ export default class Analyzer {
 
   constructor(exp: string) {
     if (exp == "") return;
-    if (this.expressionHasParenthesis(exp)) this.exp = "(" + exp + ")";
+    if (!this.expressionHasParenthesis(exp)) this.exp = "(" + exp + ")";
     else this.exp = exp;
     this.extractInput();
   }
 
   expressionHasParenthesis(exp: string) {
+    const safeEnds = exp[0] == "(" && exp[exp.length - 1] == ")";
+    if (!safeEnds) return false;
+
     let fCount = 0;
-    let bCount = 0;
-    let fState = false;
-    let bState = false;
-    for (let ind = 0; ind < exp.length; ind++) {
+    let ind: number;
+    for (ind = 0; ind < exp.length; ind++) {
       const char = exp[ind];
-      const backChar = exp[exp.length - ind + 1];
-      if (!fState) {
-        if (char == "(") {
-          fCount++;
-        } else if (char == ")") {
-          fCount--;
-          if (fCount == 0) fState = true;
-        }
-      }
-      if (!bState) {
-        if (backChar == ")") {
-          bCount++;
-        } else if (backChar == "(") {
-          bCount--;
-          if (bCount == 0) bState = true;
-        }
+      if (char == "(") {
+        fCount++;
+      } else if (char == ")") {
+        fCount--;
+        if (fCount == 0) break;
       }
     }
-    const safeEnds = exp[0] == "(" && exp[exp.length - 1] == ")";
-    if (bState && fState) return true;
-    if (!safeEnds) return true;
-    return false;
+    return ind + 1 == exp.length;
   }
 
   createTruthTable() {

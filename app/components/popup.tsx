@@ -74,7 +74,7 @@ const PopupComponent: React.FC = () => {
                 <b>=</b> is bi-conditional or equivalence
               </li>
               <li>
-                <b>()</b> parenthesis for changing order of precedence
+                <b>()</b> for changing order of precedence
               </li>
             </ul>
             {/* Lower 3 points as plain numbers */}
