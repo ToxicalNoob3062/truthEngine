@@ -4,7 +4,7 @@ import React from "react";
 
 const CardComponent: React.FC = () => {
   return (
-    <div className="bg-blue-200 p-4 w-[96%] sm:w-[75%] md:w-[50%] mx-auto rounded-lg shadow-md my-4">
+    <div className="border-4 border-blue-200 p-4 w-[96%] sm:w-[75%] md:w-[50%] mx-auto rounded-lg shadow-md my-4">
       <h2 className="text-2xl text-black text-center font-semibold mb-2 underline">
         About Tool
       </h2>

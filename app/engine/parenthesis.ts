@@ -47,7 +47,8 @@ export default class Analyzer {
     const subExpressions = expSteps.split("\n");
     let purifiedEXpression = "";
     for (let subExp of subExpressions) {
-      purifiedEXpression += this.translateLine(subExp, input) + "\n";
+      if (subExp !== "")
+        purifiedEXpression += "=> " + this.translateLine(subExp, input) + "\n";
     }
     return purifiedEXpression;
   }
@@ -77,7 +78,9 @@ export default class Analyzer {
   }
 
   findStepsFor(exp: string, inputIndex: number) {
-    this.stepsStorage = "";
+    this.stepsStorage = `${Object.keys(this.variableHash).join("")}@${
+      this.inputSets[inputIndex]
+    }\n\n`;
     this.stepsQueue.clear();
     if (!this.expressionHasParenthesis(exp)) exp = "(" + exp + ")";
     else exp = exp;
@@ -105,7 +108,7 @@ export default class Analyzer {
         const result = this.inspectBrackets(content, inputIndex, withSteps);
         if (withSteps) {
           this.stepsStorage +=
-            `Processing steps for: ${key} under input of: ${this.inputSets[inputIndex]}` +
+            `Steps for ${key}:` +
             `\n` +
             this.translateLine(key, this.inputSets[inputIndex]) +
             `\n` +

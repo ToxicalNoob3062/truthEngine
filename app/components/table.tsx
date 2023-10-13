@@ -29,7 +29,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ expression }) => {
               </tr>
             </thead>
             <tbody>
-              {values[0].map((_, rowIndex) => (
+              {values[0].map((_, rowIndex: number) => (
                 <tr
                   key={rowIndex}
                   className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-gray-200"}

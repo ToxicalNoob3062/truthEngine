@@ -22,7 +22,7 @@ const DisplayComponent: React.FC<DisplayComponentProps> = ({
           ></div>
 
           {/* Popup Content */}
-          <div className="p-4 text-justify bg-white w-[96%] md:w-[80%] lg:w-fit rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4">
+          <div className="p-4 bg-white w-[96%] sm:w-fit rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4">
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
               onClick={togglePopup}
@@ -39,10 +39,13 @@ const DisplayComponent: React.FC<DisplayComponentProps> = ({
                 <path d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
-            <h2 className="text-2xl font-semibold mb-4">Solve Steps:</h2>
-            <p className="text-gray-700" style={{ whiteSpace: "pre-line" }}>
-              {popupText}
-            </p>
+            <h2 className="text-xl font-semibold mb-4">Solve Steps: </h2>
+            <div
+              className="max-h-96 overflow-y-auto text-justify" // Adjust the max-h value to set the maximum height before scrolling
+              style={{ whiteSpace: "pre-line" }}
+            >
+              <p className="text-gray-700">{popupText}</p>
+            </div>
           </div>
         </div>
       )}

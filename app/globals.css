@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this CSS to your project's CSS file */
+/* Style the scrollbar track (background) */
+::-webkit-scrollbar {
+  width: 2px; /* Set the width of the scrollbar */
+  height: 5px; /* Set the height of the scrollbar */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Set the background color of the thumb */
+  border-radius: 3px; /* Make it circular by setting border-radius to half of the width/height */
+}
+
+/* Style the scrollbar track on hover (optional) */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Change the background color on hover */
+}
