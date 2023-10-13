@@ -31,7 +31,6 @@ export default class Analyzer {
         if (bracketCount == 0) {
           const deq = this.stepsQueue.dequeue();
           translation += deq;
-          console.log("dequed", deq);
         }
       } else if (bracketCount == 0) {
         if (this.isVariable(char)) {
@@ -112,7 +111,6 @@ export default class Analyzer {
             `\n` +
             this.purifySteps(result.stepsStorage, this.inputSets[inputIndex]);
           this.stepsQueue.enqueue(result.exp);
-          console.log("enqued", result.exp);
         } else {
           const column = this.solutionMap[key];
           column
