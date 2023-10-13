@@ -2,7 +2,7 @@
 import * as fs from "fs";
 
 // Define the path to the data.txt file
-const filePath = "data.txt";
+const filePath = "test_data.txt";
 
 // Create a readable stream to read the file
 const readStream = fs.createReadStream(filePath, { encoding: "utf8" });

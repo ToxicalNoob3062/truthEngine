@@ -22,6 +22,7 @@ export default function Home() {
   const input = useRef(null);
   const [truthTable, setTable] = useState({});
   const [scanResults, setScanResults] = useState(new Checker(""));
+  // let expression: Analyzer;
 
   function onGenerate() {
     const inputValue = input.current.value;
@@ -37,13 +38,12 @@ export default function Home() {
         }
       }
       expression.createTruthTable();
-      setTable(expression.solutionMap);
+      setTable(expression);
     } else {
       setTable({});
     }
     setScanResults(newScanResults);
   }
-
   return (
     <div className="w-full">
       <h1 className="text-5xl text-center p-3 text-blue-800 font-serif font-semibold">
@@ -67,7 +67,7 @@ export default function Home() {
       <PopupComponent />
       <Alert msg={scanResults.incorrectFor} state={scanResults.isCorrect} />
       {isNotEmptyObject(truthTable) ? (
-        <TableComponent data={truthTable as {}} />
+        <TableComponent expression={truthTable as Analyzer} />
       ) : (
         <CardComponent />
       )}

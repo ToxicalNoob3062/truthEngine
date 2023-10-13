@@ -1,10 +1,12 @@
 import Expression from "./expression";
+import Queue from "./queue";
 
 export default class Analyzer {
   solutionMap: object = {};
   variableHash: object = {};
   inputSets: string[] = [];
   stepsStorage: string = "";
+  stepsQueue: Queue<string> = new Queue();
   exp: string;
 
   constructor(exp: string) {
@@ -12,6 +14,43 @@ export default class Analyzer {
     if (!this.expressionHasParenthesis(exp)) this.exp = "(" + exp + ")";
     else this.exp = exp;
     this.extractInput();
+  }
+
+  isVariable(char: string) {
+    const asci = char.charCodeAt(0);
+    return asci >= 97 && asci <= 122;
+  }
+
+  translateLine(key: string, input: string) {
+    let translation = "";
+    let bracketCount = 0;
+    for (let char of key) {
+      if (char == "(") bracketCount++;
+      else if (char == ")") {
+        bracketCount--;
+        if (bracketCount == 0) {
+          const deq = this.stepsQueue.dequeue();
+          translation += deq;
+          console.log("dequed", deq);
+        }
+      } else if (bracketCount == 0) {
+        if (this.isVariable(char)) {
+          translation += input[this.variableHash[char]];
+        } else {
+          translation += char;
+        }
+      }
+    }
+    return translation;
+  }
+
+  purifySteps(expSteps: string, input: string) {
+    const subExpressions = expSteps.split("\n");
+    let purifiedEXpression = "";
+    for (let subExp of subExpressions) {
+      purifiedEXpression += this.translateLine(subExp, input) + "\n";
+    }
+    return purifiedEXpression;
   }
 
   expressionHasParenthesis(exp: string) {
@@ -40,7 +79,10 @@ export default class Analyzer {
 
   findStepsFor(exp: string, inputIndex: number) {
     this.stepsStorage = "";
-    this.inspectBrackets("(" + exp + ")", inputIndex, true);
+    this.stepsQueue.clear();
+    if (!this.expressionHasParenthesis(exp)) exp = "(" + exp + ")";
+    else exp = exp;
+    this.inspectBrackets(exp, inputIndex, true);
   }
 
   private inspectBrackets(
@@ -66,7 +108,11 @@ export default class Analyzer {
           this.stepsStorage +=
             `Processing steps for: ${key} under input of: ${this.inputSets[inputIndex]}` +
             `\n` +
-            result.stepsStorage;
+            this.translateLine(key, this.inputSets[inputIndex]) +
+            `\n` +
+            this.purifySteps(result.stepsStorage, this.inputSets[inputIndex]);
+          this.stepsQueue.enqueue(result.exp);
+          console.log("enqued", result.exp);
         } else {
           const column = this.solutionMap[key];
           column
@@ -121,14 +167,21 @@ export default class Analyzer {
 }
 
 //___________testing__________
+
+//used for creating truth table!
 // const input = "((a&b)|(~c^d))>(e=f|g)";
 // const expression = new Analyzer(input);
 // expression.createTruthTable();
-// expression.findStepsFor(input, 0);
+
+//used for steps testing!
+// expression.findStepsFor(input, 8);
 // console.log(expression.stepsStorage);
-// expression.findStepsFor(input, 1);
+// expression.findStepsFor(input, 11);
+// console.log(expression.stepsStorage);
 // console.log("__________");
 // console.log(expression.stepsStorage);
+
+//used to store the count of T & F !
 // let a = [0, 0];
 // for (let char of expression.solutionMap[input]) {
 //   char == "T" ? a[0]++ : a[1]++;

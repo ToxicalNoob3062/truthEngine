@@ -1,11 +1,12 @@
-interface TableData {
-  [key: string]: string[];
-}
+import Analyzer from "../engine/parenthesis";
+import ShowcaseComponent from "./showcase";
+
 interface TableComponentProps {
-  data: TableData;
+  expression: Analyzer;
 }
 
-const TableComponent: React.FC<TableComponentProps> = ({ data }) => {
+const TableComponent: React.FC<TableComponentProps> = ({ expression }) => {
+  const data = expression.solutionMap;
   const keys = Object.keys(data);
   const values = Object.values(data);
 
@@ -39,17 +40,12 @@ const TableComponent: React.FC<TableComponentProps> = ({ data }) => {
                       key={colIndex}
                       className="border border-gray-300 p-2 text-center"
                     >
-                      <span
-                        className={
-                          value[rowIndex] === "T"
-                            ? "text-green-500"
-                            : value[rowIndex] === "F"
-                            ? "text-red-500"
-                            : ""
-                        }
-                      >
-                        {value[rowIndex]}
-                      </span>
+                      <ShowcaseComponent
+                        expression={expression}
+                        columnHeading={keys[colIndex]}
+                        inputSerial={rowIndex}
+                        cellValue={value[rowIndex]}
+                      />
                     </td>
                   ))}
                 </tr>
