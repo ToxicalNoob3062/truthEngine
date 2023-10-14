@@ -60,7 +60,7 @@ const HistoryComponent: React.FC = () => {
           ></div>
 
           {/* Popup Content */}
-          <div className="p-4 bg-white w-[96%] sm:w-[65%] md:w-[40%] lg:w-[20%] rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4">
+          <div className="p-4 bg-white w-[96%] sm:w-[65%] md:w-[40%] lg:w-[30%] rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4">
             <button
               id="close_hist"
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"

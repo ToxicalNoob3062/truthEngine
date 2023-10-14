@@ -11,11 +11,11 @@ const TableComponent: React.FC<TableComponentProps> = ({ expression }) => {
   const values = Object.values(data);
 
   return (
-    <div className="w-full p-4 overflow-x-auto">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="w-full overflow-auto">
+    <div className="w-full p-4 overflow-x-auto ">
+      <div className="max-w-screen-xl mx-auto e">
+        <div className="w-full overflow-auto h-screen">
           <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
-            <thead>
+            <thead className="sticky top-0">
               <tr className="bg-white text-black">
                 <th className="border border-gray-300 p-2">#</th>
                 {keys.map((key) => (
