@@ -50,11 +50,9 @@ const PopupComponent: React.FC = () => {
               </svg>
             </button>
             <h2 className="text-2xl font-semibold mb-4">Usage Instructions:</h2>
-            <p className="text-gray-700">
-              Here are the product usage instructions:
-            </p>
+            <p className="text-gray-700 font-bold">Instructions:</p>
             {/* Upper 7 points with bullets */}
-            <ul className="list-disc pl-6 mt-2">
+            <ul className="list-disc pl-6 mt-2 mb-2">
               <li>
                 <b>~</b> is not
               </li>
@@ -76,12 +74,13 @@ const PopupComponent: React.FC = () => {
               <li>
                 <b>()</b> for changing order of precedence
               </li>
-            </ul>
-            {/* Lower 3 points as plain numbers */}
-            <ol className="list-decimal pl-6 mt-2">
               <li>
                 Expression in <span className="font-bold">lowercase!</span>
               </li>
+            </ul>
+            <p className="text-gray-700 font-bold">Extras:</p>
+            {/* Lower 3 points as plain numbers */}
+            <ol className="list-decimal pl-6 mt-2">
               <li>
                 Use <span className="font-bold">T</span> and{" "}
                 <span className="font-bold">F</span> as true and false!
@@ -89,6 +88,10 @@ const PopupComponent: React.FC = () => {
               <li>
                 For extra column, wrap with{" "}
                 <span className="font-bold">()</span>!
+              </li>
+              <li>
+                Tap on the desired <span className="font-bold">cell</span> to
+                see the <span className="font-bold">Solve Steps</span>!
               </li>
             </ol>
           </div>

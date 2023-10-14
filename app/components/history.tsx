@@ -33,6 +33,14 @@ const HistoryComponent: React.FC = () => {
     btnClose.click();
   };
 
+  const removeHistoryItem = (index: number) => {
+    const updatedHistory = [...history];
+    updatedHistory.splice(index, 1);
+    setHistory(updatedHistory);
+    if (updatedHistory.length == 0) localStorage.setItem("history", "");
+    else localStorage.setItem("history", JSON.stringify(updatedHistory));
+  };
+
   return (
     <>
       <button
@@ -71,18 +79,26 @@ const HistoryComponent: React.FC = () => {
               </svg>
             </button>
             <h2 className="text-xl font-semibold mb-4 text-center">History:</h2>
-            <div
-              className="max-h-96 overflow-y-auto text-justify"
-              style={{ whiteSpace: "pre-line" }}
-            >
+            <div className="max-h-96 overflow-y-auto text-justify">
               {history.map((item, index) => (
-                <button
+                <div
                   key={index}
-                  className="block text-left w-full p-2 mb-1 bg-orange-100 rounded-md  hover:underline focus:outline-none"
-                  onClick={() => handleButtonClick(item)}
+                  className="flex justify-between items-center p-2 bg-orange-100  rounded-md mb-2 border-2 border-black"
                 >
-                  {item}
-                </button>
+                  <button
+                    className="text-left w-full font-bold  hover:underline focus:outline-none"
+                    onClick={() => handleButtonClick(item)}
+                  >
+                    {item}
+                  </button>
+                  <button
+                    className="border-2 rounded-md border-red-500 text-red-500 p-2 text-sm"
+                    type="button"
+                    onClick={() => removeHistoryItem(index)}
+                  >
+                    X
+                  </button>
+                </div>
               ))}
             </div>
           </div>
