@@ -19,7 +19,9 @@ const CardComponent: React.FC = () => {
       <br />
       <p className="bg-purple-200 p-2 text-blue-950 rounded-md">
         You can see 👀 the usage instructions by clicking on the{" "}
-        <span className="font-bold text-black">❓️</span> button!
+        <span className="font-bold text-black">❓️</span> button! & your input
+        history by clicking the <span className="font-bold text-black">#️</span>{" "}
+        button!
       </p>
       <br />
       <p className="bg-yellow-200 p-2 rounded-md text-red-900">

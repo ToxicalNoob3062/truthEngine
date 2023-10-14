@@ -10,7 +10,7 @@ import Alert from "./components/alert";
 import HistoryComponent from "./components/history";
 
 // utility function
-function isNotEmptyObject(obj) {
+function isNotEmptyObject(obj: Object) {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       return true;
