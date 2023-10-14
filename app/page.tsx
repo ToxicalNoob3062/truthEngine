@@ -19,7 +19,7 @@ function isNotEmptyObject(obj) {
   return false;
 }
 
-export function addInHistory(exp: string) {
+function addInHistory(exp: string) {
   // Retrieve the existing history from local storage
   const jsonString = localStorage.getItem("history");
   const history = jsonString ? JSON.parse(jsonString) : [];
