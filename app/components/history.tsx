@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { addInHistory } from "../page";
 
 const HistoryComponent: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,9 @@ const HistoryComponent: React.FC = () => {
       const historyFromStorage = localStorage.getItem("history");
       if (historyFromStorage) {
         setHistory(JSON.parse(historyFromStorage));
+      } else {
+        addInHistory("((a&b)|(~c^d))>(e=f|g)");
+        setHistory(["((a&b)|(~c^d))>(e=f|g)"]);
       }
     }
   };

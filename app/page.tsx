@@ -19,7 +19,7 @@ function isNotEmptyObject(obj) {
   return false;
 }
 
-function addInHistory(exp: string) {
+export function addInHistory(exp: string) {
   // Retrieve the existing history from local storage
   const jsonString = localStorage.getItem("history");
   const history = jsonString ? JSON.parse(jsonString) : [];
@@ -51,7 +51,6 @@ export default function Home() {
   const input = useRef(null);
   const [truthTable, setTable] = useState({});
   const [scanResults, setScanResults] = useState(new Checker(""));
-  // let expression: Analyzer;
 
   function onGenerate() {
     const inputValue = input.current.value;
@@ -98,7 +97,7 @@ export default function Home() {
       <PopupComponent />
       <HistoryComponent />
       <Alert msg={scanResults.incorrectFor} state={scanResults.isCorrect} />
-      {isNotEmptyObject(truthTable) ? (
+      {isNotEmptyObject((truthTable as Analyzer)?.solutionMap) ? (
         <TableComponent expression={truthTable as Analyzer} />
       ) : (
         <CardComponent />
