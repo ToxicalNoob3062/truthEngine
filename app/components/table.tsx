@@ -13,10 +13,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ expression }) => {
   return (
     <div className="w-full p-4 overflow-x-auto">
       <div className="max-w-screen-xl mx-auto">
-        <div
-          className="table-container"
-          style={{ width: "100%", overflowX: "auto" }}
-        >
+        <div className="w-full overflow-auto">
           <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
             <thead>
               <tr className="bg-white text-black">

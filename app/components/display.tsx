@@ -22,7 +22,7 @@ const DisplayComponent: React.FC<DisplayComponentProps> = ({
           ></div>
 
           {/* Popup Content */}
-          <div className="p-4 bg-white w-[96%] sm:w-fit rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4">
+          <div className="p-4 bg-white w-[96%] sm:w-[65%] md:w-[40%] lg:w-[20%] rounded-lg shadow-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4">
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
               onClick={togglePopup}
