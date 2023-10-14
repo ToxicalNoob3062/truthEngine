@@ -56,7 +56,7 @@ export default function Home() {
     const inputValue = input.current.value;
     const newScanResults = new Checker(inputValue);
     if (newScanResults.isCorrect) {
-      addInHistory(newScanResults.exp);
+      if (newScanResults.exp !== "") addInHistory(newScanResults.exp);
       const expression = new Analyzer(newScanResults.exp);
       for (let key in expression.variableHash) {
         for (let elem of expression.inputSets) {

@@ -86,12 +86,12 @@ const PopupComponent: React.FC = () => {
                 <span className="font-bold">F</span> as true and false!
               </li>
               <li>
-                For extra column, wrap with{" "}
+                For <span className="font-bold">extra</span> column, wrap with
                 <span className="font-bold">()</span>!
               </li>
               <li>
-                Tap on the desired <span className="font-bold">cell</span> to
-                see the <span className="font-bold">Solve Steps</span>!
+                Tapping a <span className="font-bold">cell</span> shows{" "}
+                <span className="font-bold">Steps</span>!
               </li>
             </ol>
           </div>
