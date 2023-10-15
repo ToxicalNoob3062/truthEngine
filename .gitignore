@@ -6,6 +6,7 @@
 .pnp.js
 bun.lockb
 Dockerfile
+.env
 
 # testing
 /coverage
