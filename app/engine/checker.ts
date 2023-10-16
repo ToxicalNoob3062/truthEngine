@@ -85,7 +85,9 @@ export default class Checker {
       const rightChar = this.exp[charInd + 1] ? this.exp[charInd + 1] : "";
       const leftChar = this.exp[charInd - 1] ? this.exp[charInd - 1] : "";
       const valid =
-        (rightChar == ")" || rightChar == "" || this.isOperator(rightChar)) &&
+        (rightChar == ")" ||
+          rightChar == "" ||
+          (this.isOperator(rightChar) && rightChar !== "~")) &&
         (leftChar == "(" || leftChar == "" || this.isOperator(leftChar));
       if (!valid) {
         this.incorrectFor = `Variable "${char}" can't have either "${rightChar}" or "${leftChar}" or both in it's both side!😿`;

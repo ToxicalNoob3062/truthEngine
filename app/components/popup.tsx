@@ -12,7 +12,7 @@ const PopupComponent: React.FC = () => {
       {/* Question button */}
       <button
         type="button"
-        className="fixed bottom-4 right-1 p-2 rounded-full bg-purple-500 text-white hover:bg-blue-600 focus:outline-none"
+        className="fixed bottom-4 right-1 p-3 rounded-full bg-purple-500 text-white hover:bg-blue-600 focus:outline-none"
         onClick={togglePopup}
       >
         ?

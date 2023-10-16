@@ -77,12 +77,12 @@ export default function Software() {
   }
   return (
     <>
-      <div className="w-full flex p-4">
+      <div className="w-full sm:w-[80%] md:w-[70%] lg:w-1/2 flex p-2 px-1 mx-auto">
         <input
           type="text"
           ref={input}
           placeholder="Enter expression"
-          className="w-full p-2 rounded-l-md border border-gray-300 focus:outline-none focus:border-blue-500 font-bold"
+          className="w-full p-1 pl-2 rounded-l-md border border-gray-300 focus:outline-none focus:border-blue-500 font-bold"
         />
         <button
           id="generate"

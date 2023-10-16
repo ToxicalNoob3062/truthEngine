@@ -12,14 +12,19 @@ const TableComponent: React.FC<TableComponentProps> = ({ expression }) => {
 
   return (
     <div className="w-full p-4 overflow-x-auto ">
-      <div className="max-w-screen-xl mx-auto e">
+      <div className="max-w-screen-xl mx-auto">
         <div className="w-full overflow-auto h-screen">
           <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
-            <thead className="sticky top-0">
-              <tr className="bg-white text-black">
-                <th className="border border-gray-300 p-2">#</th>
+            <thead className="sticky top-0 bg-white">
+              <tr>
+                <th className="border border-gray-300 p-2 whitespace-nowrap">
+                  #
+                </th>
                 {keys.map((key) => (
-                  <th key={key} className="border border-gray-300 p-2">
+                  <th
+                    key={key}
+                    className="border border-gray-300 p-2 whitespace-nowrap"
+                  >
                     {key}
                   </th>
                 ))}

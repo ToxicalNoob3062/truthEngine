@@ -45,7 +45,7 @@ const HistoryComponent: React.FC = () => {
     <>
       <button
         type="button"
-        className="fixed bottom-16 right-1 p-2 rounded-full bg-orange-500 text-white hover:bg-blue-600 focus:outline-none"
+        className="fixed bottom-20 right-1 p-3 rounded-full bg-orange-500 text-white hover:bg-blue-600 focus:outline-none"
         onClick={togglePopup}
       >
         #
